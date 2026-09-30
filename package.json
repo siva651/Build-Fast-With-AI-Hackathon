@@ -1,0 +1,13 @@
+{
+  "name": "contentpilot-ai-ps02",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Source-locked multi-channel AI content studio for Build Fast with AI PS02",
+  "type": "module",
+  "scripts": {
+    "start": "node server.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

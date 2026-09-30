@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ContentPilot AI — Source-Locked Content Studio</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark">CP</div>
+        <div>
+          <strong>ContentPilot</strong>
+          <span>AI Content Studio</span>
+        </div>
+      </div>
+      <div class="engine-pill"><span class="pulse"></span><span id="engineStatus">AI engine ready</span></div>
+    </header>
+
+    <main class="workspace">
+      <section class="hero">
+        <div>
+          <div class="eyebrow">PS 02 · AI CONTENT STUDIO</div>
+          <h1>One source.<br><em>Every channel.</em></h1>
+          <p>Turn an authoritative campaign brief into platform-ready content while keeping every claim anchored to the source.</p>
+        </div>
+        <div class="hero-card">
+          <div class="mini-label">SOURCE LOCK</div>
+          <div class="lock-icon">⌁</div>
+          <strong>Facts stay attached.</strong>
+          <span>Unsupported claims are surfaced instead of silently invented.</span>
+        </div>
+      </section>
+
+      <section class="grid">
+        <aside class="panel input-panel">
+          <div class="panel-head">
+            <div><span class="section-no">01</span><strong>Campaign brief</strong></div>
+            <button id="demoBtn" class="ghost-btn">Load demo</button>
+          </div>
+
+          <label>Brand / creator<input id="brand" placeholder="LumaBrew"></label>
+          <label>Campaign goal<input id="goal" placeholder="Product launch"></label>
+          <label>Product / campaign idea<textarea id="idea" rows="4" placeholder="What are you launching?"></textarea></label>
+          <label>Target audience<textarea id="audience" rows="3" placeholder="Who is this for?"></textarea></label>
+
+          <div class="two">
+            <label>Tone<input id="tone" placeholder="Clear + confident"></label>
+            <label>Output style<select id="style">
+              <option>Publish-ready</option>
+              <option>Concise</option>
+              <option>Editorial</option>
+            </select></label>
+          </div>
+
+          <label>Authoritative source facts<textarea id="facts" rows="8" placeholder="One fact per line. These are the source of truth."></textarea></label>
+          <label>Guardrails<textarea id="guardrails" rows="4" placeholder="Claims to avoid, words to avoid, facts to preserve..."></textarea></label>
+
+          <div class="platform-row">
+            <div class="label">Platforms</div>
+            <div id="platforms" class="chips">
+              <button data-platform="Instagram" class="chip active">Instagram</button>
+              <button data-platform="LinkedIn" class="chip active">LinkedIn</button>
+              <button data-platform="X" class="chip active">X</button>
+              <button data-platform="Email" class="chip active">Email</button>
+              <button data-platform="Landing Page" class="chip active">Landing Page</button>
+            </div>
+          </div>
+
+          <button id="generateBtn" class="generate-btn">
+            <span>Generate content pack</span><span>↗</span>
+          </button>
+          <div class="budget-note">Live generation uses the first available Gemini model. If every model is unavailable, ContentPilot switches to a clearly labelled demo fallback.</div>
+        </aside>
+
+        <section class="panel output-panel">
+          <div class="panel-head">
+            <div><span class="section-no">02</span><strong>Output canvas</strong></div>
+            <div class="output-meta" id="outputMeta">Waiting for brief</div>
+          </div>
+
+          <div id="emptyState" class="empty-state">
+            <div class="empty-orbit"><span></span><span></span><span></span></div>
+            <h2>Ready to pilot your message.</h2>
+            <p>Load the LumaBrew demo or enter your own campaign brief, then generate a cross-channel content pack.</p>
+          </div>
+
+          <div id="loadingState" class="loading-state hidden">
+            <div class="loader"></div>
+            <div>
+              <strong id="loadingTitle">Calling Gemini…</strong>
+              <span id="loadingDetail">Trying the configured model chain.</span>
+            </div>
+          </div>
+
+          <div id="result" class="result hidden">
+            <div class="strategy-card">
+              <div class="mini-label">MESSAGE MAP</div>
+              <h2 id="coreMessage"></h2>
+              <div id="pillars" class="pillar-row"></div>
+              <div class="cta-line"><span>CTA</span><strong id="strategyCta"></strong></div>
+            </div>
+
+            <div class="tabs" id="tabs"></div>
+            <article id="preview" class="preview-card"></article>
+
+            <div class="audit-card">
+              <div class="audit-top">
+                <div>
+                  <div class="mini-label">SOURCE LOCK AUDIT</div>
+                  <strong id="auditTitle">Checking output against source facts</strong>
+                </div>
+                <button id="sourceTestBtn" class="ghost-btn">Run Source Lock test</button>
+              </div>
+              <div class="audit-grid">
+                <div class="coverage"><span id="coverageValue">0/0</span><small>critical facts observed</small></div>
+                <div class="audit-stat"><strong id="riskCount">0</strong><small>risk flags</small></div>
+              </div>
+              <div id="auditNote" class="audit-note"></div>
+              <div id="riskFlags" class="risk-list"></div>
+            </div>
+          </div>
+        </section>
+      </section>
+    </main>
+  </div>
+  <script src="/app.js"></script>
+</body>
+</html>
